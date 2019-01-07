@@ -24,7 +24,7 @@ buildscript {
     //endregion
 
     //region router
-    ext.ciceroneVersion = '2.1.0'
+    ext.ciceroneVersion = '4.0.2'
     //endregion
 
     //region android framework
@@ -41,18 +41,20 @@ buildscript {
     ext.gsonVersion = '2.8.0'
     ext.retrofitVersion = '2.1.0'
     ext.retrofitAdapterVersion = '1.0.0'
-    ext.stethoOkHttpVersion = '1.4.2'
+    ext.stethoOkHttpVersion = '1.5.0'
     ext.chuckVersion = '1.1.0'
     //endregion
 
     //region utils
     ext.pageIndicatorViewVersion = '0.2.0'
     ext.matisseVersion = '0.4.3'
-    ext.dexterVersion = '4.1.0'
+    ext.dexterVersion = '5.0.0'
     ext.textDrawableVersion = '1.0.1'
     ext.ccpVersion = '2.0.5'
     ext.fabricVersion = '1.25.2'
     ext.crashlyticsVersion = '2.9.1'
+    ext.glideVersion = '4.7.1'
+    ext.timberVersion = '4.7.0'
     //endregion
 
     repositories {
