@@ -107,4 +107,8 @@ dependencies {
     debugImplementation "com.readystatesoftware.chuck:library:$chuckVersion"
     releaseImplementation "com.readystatesoftware.chuck:library-no-op:$chuckVersion"
     //endregion
+
+    //region router
+    implementation "ru.terrakok.cicerone:cicerone:$ciceroneVersion"
+    //endregion
 }
