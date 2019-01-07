@@ -6,11 +6,11 @@ buildscript {
     ext.build_suffix = ['sh', '-c', 'git rev-list --all --count'].execute().text.trim()
 
     //region DI and Rx
-    ext.daggerVersion = '2.11'
+    ext.daggerVersion = '2.16'
     ext.javaxAnnotationVersion = '1.0'
     ext.javaxInjectVersion = '1'
     ext.rxJavaVersion = '2.0.2'
-    ext.rxAndroidVersion = '2.0.1'
+    ext.rxAndroidVersion = '2.1.0'
     ext.rxKotlinVersion = rxJavaVersion
     //endregion
 
