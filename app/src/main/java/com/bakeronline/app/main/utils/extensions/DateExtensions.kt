@@ -1,5 +1,7 @@
-package com.bakeronline.app.main.utils
+package com.bakeronline.app.main.utils.extensions
 
+import com.bakeronline.app.main.utils.Dates
+import com.bakeronline.app.main.utils.Duration
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Calendar.*

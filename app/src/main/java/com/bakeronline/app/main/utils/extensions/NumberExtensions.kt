@@ -1,5 +1,6 @@
-package com.bakeronline.app.main.utils
+package com.bakeronline.app.main.utils.extensions
 
+import com.bakeronline.app.main.utils.Duration
 import java.util.*
 
 /**
