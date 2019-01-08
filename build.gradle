@@ -50,7 +50,6 @@ buildscript {
 
     //region utils
     ext.pageIndicatorViewVersion = '0.2.0'
-    ext.matisseVersion = '0.4.3'
     ext.dexterVersion = '5.0.0'
     ext.textDrawableVersion = '1.0.1'
     ext.ccpVersion = '2.0.5'
