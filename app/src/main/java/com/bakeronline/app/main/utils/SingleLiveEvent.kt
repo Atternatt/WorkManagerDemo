@@ -8,6 +8,10 @@ import androidx.lifecycle.Observer
 import java.util.concurrent.atomic.AtomicBoolean
 
 /**
+ *
+ * @author Marc Moreno
+ * @since 8/1/2019
+ *
  * This class is [MutableLiveData] that emits one and only one item to only one observer.
  * It ensures that the emmited element is read.
  */
