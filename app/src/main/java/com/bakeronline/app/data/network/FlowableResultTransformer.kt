@@ -1,24 +1,24 @@
 package com.bakeronline.app.data.network
 
 import com.bakeronline.app.data.retrypolicy.addIncrementalRetryPolicy
+import com.bakeronline.app.domain.BO
 import com.bakeronline.app.main.exceptions.*
 import com.jakewharton.retrofit2.adapter.rxjava2.Result
 import io.reactivex.Flowable
 import io.reactivex.FlowableTransformer
 import org.reactivestreams.Publisher
-import retrofit2.Response
 import java.io.IOException
 import java.net.ConnectException
 import java.net.UnknownHostException
 import java.util.concurrent.TimeoutException
 
-class FlowableResultTransformer<T> : FlowableTransformer<Result<T>, Response<T>> {
+class FlowableResultTransformer<T : DTO> : FlowableTransformer<Result<T>, BO> {
 
     companion object {
         private const val MAX_RETRIES: Int = 7
     }
 
-    override fun apply(upstream: Flowable<Result<T>>): Publisher<Response<T>> {
+    override fun apply(upstream: Flowable<Result<T>>): Publisher<BO> {
         return upstream.flatMap {
             if (it.isError) {
                 with(it.error()) {
@@ -50,9 +50,11 @@ class FlowableResultTransformer<T> : FlowableTransformer<Result<T>, Response<T>>
                     } else {
                         throw BakerOnlineException(ErrorCode(response.message() ?: "", code))
                     }
+                } else {
+                    //todo: this needs to be tested
+                    Flowable.just(it.response().body()!!.toBO())
                 }
             }
-            Flowable.just(it.response())
         }.addIncrementalRetryPolicy(MAX_RETRIES)
     }
 
@@ -62,4 +64,4 @@ class FlowableResultTransformer<T> : FlowableTransformer<Result<T>, Response<T>>
     }
 }
 
-fun <T>Flowable<Result<T>>.extractResponse(): Flowable<Response<T>> = compose(FlowableResultTransformer())
+fun <T : DTO> Flowable<Result<T>>.extractResponse(): Flowable<BO> = compose(FlowableResultTransformer())
