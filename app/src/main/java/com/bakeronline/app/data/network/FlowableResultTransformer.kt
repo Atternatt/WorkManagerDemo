@@ -61,3 +61,5 @@ class FlowableResultTransformer<T> : FlowableTransformer<Result<T>, Response<T>>
         return code == 500 || code == 504 || code == 505
     }
 }
+
+fun <T>Flowable<Result<T>>.extractResponse(): Flowable<Response<T>> = compose(FlowableResultTransformer())
