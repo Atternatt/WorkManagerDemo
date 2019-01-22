@@ -1,0 +1,143 @@
+/**
+ * Shared file between builds so that they can all use the same dependencies and
+ * maven repositories.
+ **/
+ext.deps = [:]
+def versions = [:]
+versions.arch_core = "2.0.0"
+versions.room = "2.1.0-alpha03"
+versions.lifecycle = "2.0.0"
+versions.support = "1.0.0"
+versions.dagger = "2.16"
+versions.junit = "4.12"
+versions.retrofit = "2.3.0"
+versions.mockwebserver = "3.8.1"
+versions.glide = "4.8.0"
+versions.timber = "4.5.1"
+versions.android_gradle_plugin = "3.4.0-alpha10"
+versions.kotlin = "1.3.10"
+versions.paging = "2.1.0-rc01"
+versions.work = "1.0.0-beta01"
+versions.coreKtxVersion = "1.1.0-alpha03"
+versions.atsl_runner = "1.1.0-alpha4"
+versions.espresso = "3.1.0-alpha4"
+versions.javaxInjectVersion = '1'
+versions.javaxAnnotationVersion = "1.0"
+versions.rxJavaVersion = "2.2.0"
+versions.rxAndroidVersion = "2.1.0"
+versions.rxKotlinVersion = versions.rxJavaVersion
+versions.retrofitAdapterVersion = '1.0.0'
+versions.stetho = '1.5.0'
+versions.chuck = '1.1.0'
+versions.dexter = "5.0.0"
+versions.cicerone = "4.0.2"
+versions.mockito = "2.7.19"
+versions.mockito_all = "1.10.19"
+versions.mockito_android = "2.22.0"
+def deps = [:]
+
+def support = [:]
+support.annotations = "androidx.annotation:annotation:$versions.support"
+support.app_compat = "androidx.appcompat:appcompat:$versions.support"
+support.core = "androidx.core:core-ktx:$versions.coreKtxVersion"
+support.core_utils = "androidx.legacy:legacy-support-core-utils:$versions.support"
+deps.support = support
+
+def lifecycle = [:]
+lifecycle.runtime = "androidx.lifecycle:lifecycle-runtime:$versions.lifecycle"
+lifecycle.extensions = "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+lifecycle.java8 = "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle"
+lifecycle.compiler = "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
+deps.lifecycle = lifecycle
+
+def arch_core = [:]
+arch_core.testing = "androidx.arch.core:core-testing:$versions.arch_core"
+deps.arch_core = arch_core
+
+def retrofit = [:]
+retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+retrofit.gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+retrofit.mock = "com.squareup.retrofit2:retrofit-mock:$versions.retrofit"
+retrofit.rx2 = "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$versions.retrofitAdapterVersion"
+deps.retrofit = retrofit
+
+def rx = [:]
+rx.inject = "javax.inject:javax.inject:$versions.javaxInjectVersion"
+rx.annotations = "javax.annotation:jsr250-api:$versions.javaxAnnotationVersion"
+rx.rxJava2 = "io.reactivex.rxjava2:rxjava:$versions.rxJavaVersion"
+rx.rxJava2Android = "io.reactivex.rxjava2:rxandroid:$versions.rxAndroidVersion"
+rx.rxJava2Kotlin = "io.reactivex.rxjava2:rxkotlin:$versions.rxKotlinVersion"
+deps.rx = rx
+
+def dagger = [:]
+dagger.runtime = "com.google.dagger:dagger:$versions.dagger"
+dagger.android = "com.google.dagger:dagger-android:$versions.dagger"
+dagger.android_support = "com.google.dagger:dagger-android-support:$versions.dagger"
+dagger.compiler = "com.google.dagger:dagger-compiler:$versions.dagger"
+dagger.android_support_compiler = "com.google.dagger:dagger-android-processor:$versions.dagger"
+
+deps.dagger = dagger
+
+def espresso = [:]
+espresso.core = "androidx.test.espresso:espresso-core:$versions.espresso"
+espresso.contrib = "androidx.test.espresso:espresso-contrib:$versions.espresso"
+espresso.intents = "androidx.test.espresso:espresso-intents:$versions.espresso"
+deps.espresso = espresso
+
+def atsl = [:]
+atsl.runner = "androidx.test:runner:$versions.atsl_runner"
+atsl.rules = "androidx.test:rules:$versions.atsl_runner"
+deps.atsl = atsl
+
+def mockito = [:]
+mockito.core = "org.mockito:mockito-core:$versions.mockito"
+mockito.all = "org.mockito:mockito-all:$versions.mockito_all"
+mockito.android = "org.mockito:mockito-android:$versions.mockito_android"
+deps.mockito = mockito
+
+def kotlin = [:]
+kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
+kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+kotlin.allopen = "org.jetbrains.kotlin:kotlin-allopen:$versions.kotlin"
+
+deps.kotlin = kotlin
+
+deps.paging_ktx = "androidx.paging:paging-runtime-ktx:$versions.paging"
+
+def glide = [:]
+glide.runtime = "com.github.bumptech.glide:glide:$versions.glide"
+glide.compiler = "com.github.bumptech.glide:compiler:$versions.glide"
+deps.glide = glide
+deps.timber = "com.jakewharton.timber:timber:$versions.timber"
+deps.junit = "junit:junit:$versions.junit"
+deps.mock_web_server = "com.squareup.okhttp3:mockwebserver:$versions.mockwebserver"
+deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
+deps.stetho = "com.facebook.stetho:stetho-okhttp3:$versions.stetho"
+deps.chuck = "com.readystatesoftware.chuck:library:$versions.chuck"
+deps.chuck_noop = "com.readystatesoftware.chuck:library-no-op:$versions.chuck"
+deps.dexter = "com.karumi:dexter:$versions.dexter"
+deps.cicerone = "ru.terrakok.cicerone:cicerone:$versions.cicerone"
+ext.deps = deps
+
+def build_versions = [:]
+build_versions.min_sdk = 21
+build_versions.target_sdk = 28
+build_versions.build_tools = "28.0.3"
+ext.build_versions = build_versions
+
+def work = [:]
+work.runtime = "android.arch.work:work-runtime:$versions.work"
+work.testing = "android.arch.work:work-testing:$versions.work"
+work.firebase = "android.arch.work:work-firebase:$versions.work"
+work.runtime_ktx = "android.arch.work:work-runtime-ktx:$versions.work"
+deps.work = work
+ext.deps = deps
+
+static def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.jcenter()
+    handler.maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+}
+
+ext.addRepos = this.&addRepos

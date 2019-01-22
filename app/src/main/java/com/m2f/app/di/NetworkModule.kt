@@ -13,7 +13,6 @@ import okhttp3.ResponseBody
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
 import javax.inject.Singleton
 import java.lang.reflect.Type
 
@@ -51,10 +50,8 @@ class NetworkModule {
             }
         }
 
-
         return Retrofit.Builder()
                 .addConverterFactory(nullOnEmptyConverterFactory)
-                .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(httpClient)

@@ -7,16 +7,15 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    def globalConfiguration = rootProject.extensions.getByName("ext")
-    compileSdkVersion 28
+    compileSdkVersion build_versions.target_sdk
 
     //region default config
     defaultConfig {
         applicationId "com.m2f.app"
-        minSdkVersion 21
-        targetSdkVersion 28
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
         versionCode 1
-        versionName globalConfiguration["androidVersionName"]
+        versionName "0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables.useSupportLibrary = true
@@ -83,54 +82,64 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //region Android Framework
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "androidx.appcompat:appcompat:$supportXVersion"
-    implementation "androidx.core:core-ktx:$coreKtxVersion"
-    testImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "androidx.test:runner:$testRunnerVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    implementation deps.kotlin.stdlib
+    implementation deps.support.app_compat
+    implementation deps.support.core
+    implementation deps.work.runtime
+    implementation deps.work.runtime_ktx
+    //to be considered
+    //implementation deps.work.firebase
+    implementation deps.lifecycle.extensions
+    implementation deps.support.core_utils
+
     //endregion
 
-    //region Rx and dependency injection
-    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
-    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
-    implementation "com.google.dagger:dagger:$daggerVersion"
-    implementation "javax.inject:javax.inject:$javaxInjectVersion"
-    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
-    implementation "com.google.dagger:dagger-android:$daggerVersion"
-    compileOnly "javax.annotation:jsr250-api:$javaxAnnotationVersion"
-    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
-    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
-    implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
-    implementation "com.jakewharton.rxbinding2:rxbinding:$rxBindingsVersion"
+    //region test
+    testImplementation deps.junit
+    androidTestImplementation deps.atsl.runner
+    androidTestImplementation deps.atsl.rules
+    androidTestImplementation deps.espresso.core
+    androidTestImplementation deps.work.testing
+    androidTestImplementation deps.arch_core.testing
+    androidTestImplementation deps.mockito.android
+    testImplementation deps.mockito.core
+    //endregion
+
+    //region dependency injection
+    implementation deps.dagger.runtime
+    implementation deps.dagger.android
+    implementation deps.dagger.android_support
+    kapt deps.dagger.compiler
+    kapt deps.dagger.android_support_compiler
+    //endregion
+
+    //Rx
+    implementation deps.rx.inject
+    compileOnly deps.rx.annotations
+    implementation deps.rx.rxJava2
+    implementation deps.rx.rxJava2Android
+    implementation deps.rx.rxJava2Kotlin
     //endregion
 
     //region Network
-    implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
-    implementation "com.google.code.gson:gson:$gsonVersion"
-    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$retrofitAdapterVersion"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-    implementation "com.facebook.stetho:stetho-okhttp3:$stethoOkHttpVersion"
-    implementation "com.squareup.retrofit2:converter-scalars:$retrofitVersion"
-    debugImplementation "com.readystatesoftware.chuck:library:$chuckVersion"
-    releaseImplementation "com.readystatesoftware.chuck:library-no-op:$chuckVersion"
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.mock
+    implementation deps.retrofit.gson
+    implementation deps.mock_web_server
+    implementation deps.retrofit.rx2
+    implementation deps.stetho
+    debugImplementation deps.chuck
+    releaseImplementation deps.chuck_noop
     //endregion
 
     //region router
-    implementation "ru.terrakok.cicerone:cicerone:$ciceroneVersion"
+    implementation deps.cicerone
     //endregion
 
     //region utils
-    implementation "com.romandanylyk:pageindicatorview:$pageIndicatorViewVersion"
-    implementation "com.karumi:dexter:$dexterVersion"
-    implementation "com.amulyakhare:com.amulyakhare.textdrawable:$textDrawableVersion"
-    implementation "com.hbb20:ccp:$ccpVersion"
-    implementation "com.github.bumptech.glide:glide:$glideVersion"
-    implementation "com.github.bumptech.glide:okhttp3-integration:$glideVersion@aar"
-    implementation "com.jakewharton.timber:timber:$timberVersion"
-
-    kapt "com.github.bumptech.glide:compiler:$glideVersion"
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation deps.dexter
+    implementation deps.glide.runtime
+    kapt deps.glide.compiler
+    implementation deps.timber
     //endregion
 }
