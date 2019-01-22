@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.bakeronline.app">
+          package="com.m2f.app">
 
     <application
             android:name=".main.BakerApplication"
