@@ -113,7 +113,7 @@ dependencies {
     kapt deps.dagger.android_support_compiler
     //endregion
 
-    //Rx
+    //region Rx
     implementation deps.rx.inject
     compileOnly deps.rx.annotations
     implementation deps.rx.rxJava2
