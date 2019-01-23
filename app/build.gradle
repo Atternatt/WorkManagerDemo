@@ -91,7 +91,7 @@ dependencies {
     //implementation deps.work.firebase
     implementation deps.lifecycle.extensions
     implementation deps.support.core_utils
-
+    implementation deps.support.constraint_layout
     //endregion
 
     //region test
