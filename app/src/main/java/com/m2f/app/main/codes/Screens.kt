@@ -5,7 +5,7 @@ import android.content.Intent
 import com.m2f.app.presentation.pagination.AdvancedPaginationActivity
 import com.m2f.app.presentation.pagination.JetpackPaginationActivity
 import com.m2f.app.presentation.pagination.PaginationSelectionActivity
-import com.m2f.app.presentation.pagination.SimplePaginationActivity
+import com.m2f.app.presentation.pagination.simple.SimplePaginationActivity
 import ru.terrakok.cicerone.android.pure.AppScreen
 
 

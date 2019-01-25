@@ -1,10 +1,10 @@
 package com.m2f.app.presentation.pagination
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.m2f.app.R
+import com.m2f.app.main.BaseActivity
 
-class JetpackPaginationActivity : AppCompatActivity() {
+class JetpackPaginationActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
