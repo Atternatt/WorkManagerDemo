@@ -67,7 +67,7 @@ android {
     }
 
     configurations.all {
-        resolutionStrategy.force 'com.squareup.okhttp3:okhttp:3.9.0'
+        exclude group: 'com.google.guava', module: 'listenablefuture'
     }
     //endregion
 
@@ -79,21 +79,21 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/mj-core-release.aar')
 
     //region Android Framework
     implementation deps.kotlin.stdlib
     implementation deps.support.app_compat
     implementation deps.support.core
-    implementation deps.work.runtime
-    implementation deps.work.runtime_ktx
+    implementation(deps.work.runtime)
+    implementation(deps.work.runtime_ktx)
     //to be considered
     //implementation deps.work.firebase
     implementation deps.lifecycle.extensions
     implementation deps.support.core_utils
     implementation deps.support.constraint_layout
     //endregion
-
     //region test
     testImplementation deps.junit
     androidTestImplementation deps.atsl.runner
@@ -104,7 +104,6 @@ dependencies {
     androidTestImplementation deps.mockito.android
     testImplementation deps.mockito.core
     //endregion
-
     //region dependency injection
     implementation deps.dagger.runtime
     implementation deps.dagger.android
@@ -112,7 +111,6 @@ dependencies {
     kapt deps.dagger.compiler
     kapt deps.dagger.android_support_compiler
     //endregion
-
     //region Rx
     implementation deps.rx.inject
     compileOnly deps.rx.annotations
@@ -120,7 +118,6 @@ dependencies {
     implementation deps.rx.rxJava2Android
     implementation deps.rx.rxJava2Kotlin
     //endregion
-
     //region Network
     implementation deps.retrofit.runtime
     implementation deps.retrofit.mock
@@ -131,15 +128,14 @@ dependencies {
     debugImplementation deps.chuck
     releaseImplementation deps.chuck_noop
     //endregion
-
     //region router
     implementation deps.cicerone
     //endregion
-
     //region utils
     implementation deps.dexter
     implementation deps.glide.runtime
     kapt deps.glide.compiler
     implementation deps.timber
+    implementation deps.guava.core
     //endregion
 }
