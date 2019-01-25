@@ -35,6 +35,7 @@ versions.cicerone = "4.0.2"
 versions.mockito = "2.7.19"
 versions.mockito_all = "1.10.19"
 versions.mockito_android = "2.22.0"
+versions.guava = "25.1-android"
 def deps = [:]
 
 def support = [:]
@@ -44,6 +45,10 @@ support.core = "androidx.core:core-ktx:$versions.coreKtxVersion"
 support.core_utils = "androidx.legacy:legacy-support-core-utils:$versions.support"
 support.constraint_layout = "androidx.constraintlayout:constraintlayout:$versions.constraint_laypout"
 deps.support = support
+
+def guava = [:]
+guava.core = "com.google.guava:guava:$versions.guava"
+deps.guava = guava
 
 def lifecycle = [:]
 lifecycle.runtime = "androidx.lifecycle:lifecycle-runtime:$versions.lifecycle"
