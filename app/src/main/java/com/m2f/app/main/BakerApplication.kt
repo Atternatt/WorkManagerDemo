@@ -13,6 +13,7 @@ class BakerApplication : DaggerApplication() {
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
         DaggerApplicationComponent.builder()
+            .context(this.applicationContext)
             .create(this)
 
     override fun onCreate() {
