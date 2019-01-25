@@ -81,6 +81,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation files('libs/mj-core-release.aar')
+
     //region Android Framework
     implementation deps.kotlin.stdlib
     implementation deps.support.app_compat
