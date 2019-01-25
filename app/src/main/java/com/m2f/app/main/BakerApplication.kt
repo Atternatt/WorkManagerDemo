@@ -1,7 +1,9 @@
 package com.m2f.app.main
 
 import android.os.StrictMode
-import androidx.work.*
+import androidx.work.Constraints
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.facebook.stetho.Stetho
 import com.m2f.app.BuildConfig
 import com.m2f.app.di.DaggerApplicationComponent
@@ -46,23 +48,15 @@ class BakerApplication : DaggerApplication() {
         initInjection()
 
         val constraints = Constraints.Builder()
-            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .setRequiresStorageNotLow(true)
             .build()
 
-        val data = workDataOf("TEST" to "Test")
-
-        val request = OneTimeWorkRequestBuilder<PerformanceProcessorWorker>()
-            .setInputData(data)
+        // Periodic worker to save an snapshot of the memory
+        val periodicWorkRequest = PeriodicWorkRequestBuilder<PerformanceProcessorWorker>(10, TimeUnit.SECONDS)
             .setConstraints(constraints)
-            .setBackoffCriteria(BackoffPolicy.LINEAR, OneTimeWorkRequest.MIN_BACKOFF_MILLIS, TimeUnit.MILLISECONDS)
             .build()
-//
-//        val periodicWorkRequest = PeriodicWorkRequestBuilder<TestWorker>(1, TimeUnit.SECONDS)
-//            .setInputData(data)
-//            .setConstraints(constraints)
-//            .build()
 
-        WorkManager.getInstance().enqueue(request)
-
+        // Enqueue the periodic worker into the pool
+        WorkManager.getInstance().enqueue(periodicWorkRequest)
     }
 }
